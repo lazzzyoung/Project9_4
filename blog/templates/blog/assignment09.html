@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>실습 과제 09 | HTML5 문서 구조와 멀티미디어 태그</title>
+    <link rel="stylesheet" href="{% static 'blog/assignment09.css' %}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <p class="eyebrow">Practice 09</p>
+            <h1>HTML5 문서 구조와 멀티미디어 태그</h1>
+            <p class="hero-text">
+                시 한 편과 이미지, 오디오, 비디오를 한 화면 안에 차분하게 정리한 페이지입니다.
+            </p>
+            <nav class="hero-nav" aria-label="page navigation">
+                <a href="#poem">section</a>
+                <a href="#gallery">image</a>
+                <a href="#media">multimedia</a>
+                <a href="#aside-note">aside</a>
+                <a href="#page-footer">footer</a>
+                <a href="#poem-list">poems</a>
+            </nav>
+        </header>
+
+        <main class="content-grid">
+            <section class="main-section" id="poem">
+                <article class="panel poem-panel">
+                    <div class="panel-head">
+                        <p class="panel-label">section + article</p>
+                        <h2>{{ poem_title }}</h2>
+                        <p class="panel-subtitle">시인 {{ poet }}</p>
+                    </div>
+
+                    <div class="poem-layout">
+                        <figure class="poem-figure" id="gallery">
+                            <img
+                                src="{% static 'blog/well-portrait.svg' %}"
+                                alt="달이 비치는 우물과 푸른 바람을 표현한 일러스트"
+                                title="자화상 이미지"
+                            >
+                            <figcaption>
+                                달빛과 바람, 우물 속에 비친 한 사람의 분위기를 시의 장면처럼 표현한 이미지입니다.
+                            </figcaption>
+                        </figure>
+
+                        <div class="poem-body">
+                            {% for line in poem_lines %}
+                                <p>{{ line }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
+
+                <section class="panel media-panel" id="media">
+                    <div class="panel-head">
+                        <p class="panel-label">audio + video</p>
+                        <h2>멀티미디어 태그</h2>
+                        <p class="panel-subtitle">오디오와 비디오를 함께 담아둔 영역</p>
+                    </div>
+
+                    <div class="media-grid">
+                        <article class="media-card">
+                            <h3>오디오</h3>
+                            <p>
+                                화면 안에서 바로 재생해볼 수 있도록 짧은 오디오를 함께 넣었습니다.
+                            </p>
+                            <audio controls preload="none">
+                                <source src="{{ audio_src }}" type="audio/mpeg">
+                                오디오 파일을 재생할 수 없습니다.
+                            </audio>
+                        </article>
+
+                        <article class="media-card">
+                            <h3>비디오</h3>
+                            <p>
+                                잔잔한 분위기의 짧은 영상을 배치해 페이지 흐름이 단조롭지 않도록 구성했습니다.
+                            </p>
+                            <video
+                                controls
+                                muted
+                                loop
+                                preload="metadata"
+                                poster="{% static 'blog/well-portrait.svg' %}"
+                            >
+                                <source src="{{ video_webm }}" type="video/webm">
+                                <source src="{{ video_mp4 }}" type="video/mp4">
+                                비디오 파일을 재생할 수 없습니다.
+                            </video>
+                        </article>
+                    </div>
+                </section>
+            </section>
+
+            <aside class="panel aside-panel" id="aside-note">
+                <div class="panel-head">
+                    <p class="panel-label">aside</p>
+                    <h2>윤동주 시인의 다른 시</h2>
+                    <p class="panel-subtitle">같이 읽어보고 싶은 작품들</p>
+                </div>
+
+                <ul class="poem-list" id="poem-list">
+                    {% for item in other_poems %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tag-box">
+                    <p class="tag-box-title">페이지 구성</p>
+                    <div class="tag-list">
+                        <span>header</span>
+                        <span>nav</span>
+                        <span>section</span>
+                        <span>article</span>
+                        <span>aside</span>
+                        <span>figure</span>
+                        <span>audio</span>
+                        <span>video</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="site-footer" id="page-footer">
+            <small>©모바일/웹서비스프로그래밍 ®2026</small>
+        </footer>
+    </div>
+</body>
+</html>
