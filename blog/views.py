@@ -78,3 +78,7 @@ def assignment09(request):
         "video_webm": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
     }
     return render(request, "blog/assignment09.html", context)
+
+
+def js_test(request):
+    return render(request, "blog/js_test.html")
