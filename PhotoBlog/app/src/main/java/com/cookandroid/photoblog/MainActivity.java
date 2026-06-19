@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int READ_MEDIA_IMAGES_PERMISSION_CODE = 1001;
     private static final int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 1002;
-    private static final String UPLOAD_URL = "http://10.0.2.2:8000/api_root/Post/";
+    private static final String UPLOAD_URL = "https://tang0923.pythonanywhere.com/api_root/Post/";
     private static final String AUTH_TOKEN = "07b1dcc313964c234a2414dd5d371b9e7eb4005a";
 
     private Uri imageUri = null;
